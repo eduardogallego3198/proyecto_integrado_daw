@@ -1,0 +1,35 @@
+<div class="row mx-0 col-10 mx-auto d-flex justify-content-center">
+    <h1 class="col-12 h1 py-3 mb-0 bg-secondary text-center text-white">Iniciar sesión</h1>
+    <form class="col-12 row d-flex align-items-center py-3" *ngIf="!isLoggedIn" name="form"
+        (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Nombre de usuario:</label>
+            <input class="form-control" type="text" name="nombre_usuario" [(ngModel)]="form.nombre_usuario" required
+                minlength="3" #nombre_usuario="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && nombre_usuario.invalid">
+                <div *ngIf="nombre_usuario.errors.required">Se requiere nombre</div>
+                <div *ngIf="nombre_usuario.errors.minlength">
+                    El nombre de usuario debe tener al menos 3 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Contraseña:</label>
+            <input class="form-control" type="password" name="password" [(ngModel)]="form.password" required
+                minlength="8" #password="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">Se requiere contraseña</div>
+                <div *ngIf="password.errors.minlength">
+                    La contraseña debe tener al menos 8 caracteres
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary col-12 col-md-4 col-lg-3 btn-block">Iniciar sesión</button>
+        <div class="alert alert-warning" *ngIf="f.submitted && isLoginFailed">
+            Inicio de sesión fallido<br />{{ errorMessage }}
+        </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+        Sesión inciada como {{ roles }}
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="row mx-0 col-10 mx-auto d-flex justify-content-center">
+    <h1 class="col-12 h1 py-3 mb-0 bg-secondary text-center text-white">Registro</h1>
+    <form class="col-12 row d-flex align-items-center py-3" *ngIf="!isSuccessful" name="form"
+        (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="col-12 col-lg-6 form-group">
+            <label>Nombre:</label>
+            <input class="form-control" type="text" name="nombre" [(ngModel)]="form.nombre" required minlength="3"
+                #nombre="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && nombre.invalid">
+                <div *ngIf="nombre.errors.required">Se requiere nombre</div>
+                <div *ngIf="nombre.errors.minlength">
+                    El nombre debe tener al menos 3 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Apellidos:</label>
+            <input class="form-control" type="text" name="apellidos" [(ngModel)]="form.apellidos" required minlength="3"
+                #apellidos="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && apellidos.invalid">
+                <div *ngIf="apellidos.errors.required">Se requieren apellidos</div>
+                <div *ngIf="apellidos.errors.minlength">
+                    Los apellidos deben tener al menos 3 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Dirección:</label>
+            <input class="form-control" type="text" name="direccion" [(ngModel)]="form.direccion" required minlength="3"
+                #direccion="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && direccion.invalid">
+                <div *ngIf="direccion.errors.required">Se requiere dirección</div>
+                <div *ngIf="direccion.errors.minlength">
+                    La dirección debe tener al menos 3 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>DNI:</label>
+            <input class="form-control" type="text" name="dni" [(ngModel)]="form.dni" required minlength="9"
+                #dni="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && nombre.invalid">
+                <div *ngIf="dni.errors.required">Se requiere dni</div>
+                <div *ngIf="dni.errors.minlength">
+                    El dni debe tener 9 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Teléfono:</label>
+            <input class="form-control" type="text" name="telefono" [(ngModel)]="form.telefono" required minlength="6"
+                #telefono="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && telefono.invalid">
+                <div *ngIf="telefono.errors.required">Se requiere teléfono</div>
+                <div *ngIf="telefono.errors.minlength">
+                    El teléfono debe tener al menos 3 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Email:</label>
+            <input class="form-control" type="text" name="email" [(ngModel)]="form.email" required email
+                #email="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                <div *ngIf="email.errors.required">Se requiere correo electrónico</div>
+                <div *ngIf="email.errors.email">
+                    El correo electrónico no es válido
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Nombre de usuario:</label>
+            <input class="form-control" type="text" name="nombre_usuario" [(ngModel)]="form.nombre_usuario" required
+                minlength="3" #nombre_usuario="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && nombre.invalid">
+                <div *ngIf="nombre.errors.required">Se requiere nombre</div>
+                <div *ngIf="nombre.errors.minlength">
+                    El nombre de usuario debe tener al menos 3 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group px-2">
+            <label>Contraseña:</label>
+            <input class="form-control" type="password" name="password" [(ngModel)]="form.password" required
+                minlength="8" #password="ngModel">
+            <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">Se requiere contraseña</div>
+                <div *ngIf="password.errors.minlength">
+                    La contraseña debe tener al menos 8 caracteres
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary col-12 col-md-4 col-lg-3">Registrarse</button>
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Registro fallido<br />{{ errorMessage }}
+        </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isSuccessful">
+        El registro se ha realizado correctamente
+    </div>
+</div>

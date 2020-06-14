@@ -1,0 +1,50 @@
+<div class="container-fluid px-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="inicio" class="navbar-brand d-flex align-items-center py-0">
+            <img id="logo" class="mr-2" src="../assets/logo.png" alt="">
+            <span>GoodBooks</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a routerLink="inicio" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="libros" class="nav-link">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="acercaDe" class="nav-link">Acerca de</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="contacto" class="nav-link">Contacto</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Buscar libros" aria-label="Buscar libros">
+                <button class="btn btn-primary mx-2" type="submit">Buscar</button>
+            </form>
+            <div class="mx-2" *ngIf="!isLoggedIn">
+                <a href="/login" routerLink="login"><button class="btn btn-outline-success mx-1">Iniciar
+                        sesión</button></a>
+                        <a href="/registro" routerLink="registro"><button class="btn btn-success mx-1">Registrarse</button></a>
+            </div>
+            <div class="mx-2 dropdown" *ngIf="isLoggedIn">
+                <button class="btn btn-primary mx-1 dropdown-toggle" type="button" id="dropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">{{ nombre_usuario }}</button>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <a [href]="getBoard()" class="dropdown-item" 
+                        *ngIf="getBoard() == 'areaCliente'">Área cliente</a>
+                    <a [href]="getBoard()" class="dropdown-item" 
+                        *ngIf="getBoard() == 'areaAdmin'">Area administrador</a>
+                    <a href="/" class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+                </div>
+            </div>
+            <button class="btn btn-primary mx-2">Carrito</button>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
